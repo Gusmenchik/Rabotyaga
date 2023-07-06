@@ -1,18 +1,18 @@
-class Worker {
-    private final Main.OnTaskDoneListener doneCallback;
-    private final Main.OnTaskErrorListener errorCallback;
+public class Worker {
+    private final OnTaskDoneListener callback;
+    private final OnTaskErrorListener errorCallback;
 
-    public Worker(Main.OnTaskDoneListener doneCallback, Main.OnTaskErrorListener errorCallback) {
-        this.doneCallback = doneCallback;
+    public Worker(OnTaskDoneListener callback, OnTaskErrorListener errorCallback) {
+        this.callback = callback;
         this.errorCallback = errorCallback;
     }
 
     public void start() {
         for (int i = 0; i < 100; i++) {
             if (i == 33) {
-                errorCallback.onError("Error in task " + i);
+                errorCallback.onError("Error occurred for task " + i);
             } else {
-                doneCallback.onDone("Task " + i + " is done");
+                callback.onDone("Task " + i + " is done");
             }
         }
     }
